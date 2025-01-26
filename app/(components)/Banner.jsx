@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Banner = () => {
   return (
-    <div className='bg-[#1e1e1e] py-[75px] pb-[120px]'>
+    <div id='home' className='bg-[#1e1e1e] py-[75px]'>
       <Container>
         <Flex>
           <div className='w-1/2'>
@@ -52,8 +52,11 @@ const Banner = () => {
               </div>
             </div>
         </div>
-        <div className='w-1/2'>
-
+          <div className='w-1/2 relative'>
+            <div className='bg-[#ffffff0c] rounded-full w-[420px] h-[440px] absolute top-[60%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-0'></div>
+            <div className='flex justify-center relative z-10'>
+              <img className='w-[360px] h-[550px] mt-1' src="Man-img.png" alt="image" />
+            </div>
         </div>
         </Flex>
       </Container>

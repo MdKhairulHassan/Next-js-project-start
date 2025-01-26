@@ -1,13 +1,84 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Container from './Container'
 import Link from 'next/link'
 
-
-
 const Header = () => {
+  const [header, setHeader] = useState(false);
+  const [menu1, setColor1] = useState(false);
+  const [menu2, setColor2] = useState(false);
+  const [menu3, setColor3] = useState(false);
+  const [menu4, setColor4] = useState(false);
+  const [menu5, setColor5] = useState(false);
 
+  const scrollHeader = () => {
+    if (window.scrollY >= 20) {
+      setHeader(true)
+    } else {
+      setHeader(false)
+    }
+  }
+    const changeColor1 = () => {
+      if(window.scrollY >= 0 && window.scrollY <= 600){
+          setColor1(true)
+      }else{
+          setColor1(false)
+      }
+  }
+
+    const changeColor2 = () => {
+    if(window.scrollY >= 601 && window.scrollY <= 1300){
+        setColor2(true)
+    }else{
+        setColor2(false)
+    }
+  }
+  
+    const changeColor3 = () => {
+    if(window.scrollY >= 1301 && window.scrollY <= 2500){
+        setColor3(true)
+    }else{
+        setColor3(false)
+    }
+  }
+  
+    const changeColor4 = () => {
+    if(window.scrollY >= 2501 && window.scrollY <= 4300){
+        setColor4(true)
+    }else{
+        setColor4(false)
+    }
+  }
+  
+    const changeColor5 = () => {
+    if(window.scrollY >= 4301 && window.scrollY <= 5200){
+        setColor5(true)
+    }else{
+        setColor5(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollHeader);
+    window.addEventListener('scroll', changeColor1);
+    window.addEventListener('scroll', changeColor2);
+    window.addEventListener('scroll', changeColor3);
+    window.addEventListener('scroll', changeColor4);
+    window.addEventListener('scroll', changeColor5);
+    
+    return () => {
+      window.addEventListener('scroll', scrollHeader);
+      window.addEventListener('scroll', changeColor1);
+      window.addEventListener('scroll', changeColor2);
+      window.addEventListener('scroll', changeColor3);
+      window.addEventListener('scroll', changeColor4);
+      window.addEventListener('scroll', changeColor5);
+    }
+  }, [])
+  
   return (
-    <div className='bg-mainbgColor'>
+    <div className={header ? "fixed w-full z-50 bg-black" : "bg-mainbgColor" }>
+    <div className='pt-[10px] '>
       <Container>
         <div className="navbar">
         <div className="navbar-start">
@@ -30,19 +101,19 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
               <li>
-                <a>Home</a>
+                <Link href={'#home'} className={"hover:text-menuTHoverColor" } >Home</Link>
               </li>
               <li>
-                <a>Services</a>
+                <Link href={'#service'} className={"hover:text-menuTHoverColor" }>Services</Link>
               </li>
               <li>
-                <a>About me</a>
+                <Link href={'#about'} className={"hover:text-menuTHoverColor" }>About me</Link>
               </li>
               <li>
-                <a>Portfolio</a>
+                <Link href={'#portfolio'} className={"hover:text-menuTHoverColor" }>Portfolio</Link>
               </li>
               <li>
-                <a>Contact me</a>
+                <Link href={'#contact'} className={"hover:text-menuTHoverColor" }>Contact me</Link>
               </li>
             </ul>
           </div>
@@ -59,21 +130,21 @@ const Header = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-menuTextsColor font-medium text-[20px] font-robo">
+          <ul className="gap-x-10 menu-horizontal px-1 text-menuTextsColor font-medium text-[20px] font-robo">
             <li>
-              <Link href={'/'} className={'hover:text-menuTHoverColor'}>Home</Link>
+              <Link href={'#home'} className={menu1 ? "text-red-700" : "hover:text-menuTHoverColor" } >Home</Link>
             </li>
             <li>
-              <Link href={'#'} className='hover:text-menuTHoverColor'>Services</Link>
+              <Link href={'#service'} className={menu2 ? "text-red-700" : "hover:text-menuTHoverColor" }>Services</Link>
             </li>
             <li>
-              <Link href={'#'} className='hover:text-menuTHoverColor'>About me</Link>
+              <Link href={'#about'} className={menu3 ? "text-red-700" : "hover:text-menuTHoverColor" }>About me</Link>
             </li>
             <li>
-              <Link href={'#'} className='hover:text-menuTHoverColor'>Portfolio</Link>
+              <Link href={'#portfolio'} className={menu4 ? "text-red-700" : "hover:text-menuTHoverColor" }>Portfolio</Link>
             </li>
             <li>
-              <Link href={'#'} className='hover:text-menuTHoverColor'>Contact me</Link>
+              <Link href={'#contact'} className={menu5 ? "text-red-700" : "hover:text-menuTHoverColor" }>Contact me</Link>
             </li>
           </ul>
         </div>
@@ -82,6 +153,7 @@ const Header = () => {
        </div>
       </div>
       </Container>
+    </div>
     </div>
   )
 }
